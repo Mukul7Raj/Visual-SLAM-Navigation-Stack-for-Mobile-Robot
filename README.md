@@ -76,20 +76,6 @@ If tracking is lost, `lost_frames` in `metrics.json` goes up; the frontend holds
 
 See [`sim/gazebo/README.md`](sim/gazebo/README.md). Calibrate the camera so `configs/default.yaml` matches the real `K`. Replay a bag or subscribe to `/camera/image_raw` and call `VisualSLAM.process`.
 
-## Interview notes
-
-Be ready to derive or sketch:
-
-1. **Why ORB** — FAST corners + BRIEF binary descriptors, Hamming match, good for CPU robots.
-2. **Essential matrix** — `E = [t]_× R`, five-point / RANSAC, `recoverPose` cheirality.
-3. **Gauge freedom** — monocular scale; first pose fixed in BA; scale from first baseline (unit `t` from `recoverPose`).
-4. **PnP vs two-view** — after the map exists, pose is 3D–2D (`solvePnPRansac`), not 2D–2D.
-5. **Bundle adjustment** — state = poses + points, residual = `π(T X) − uv`, Huber loss, oldest window pose locked.
-6. **Loop closure** — place recognition + geometric verify; full ORB-SLAM uses DBoW2 + pose-graph Sim(3). Here: descriptor match to old keyframes + PnP.
-7. **ATE vs RPE** — global consistency vs local drift.
-8. **Sparse map → occupancy** — why inflation, height gates, and why this is weaker than a lidar occupancy grid.
-
-Honest limitations: single thread, no IMU, no relocalization bag-of-words, BA is dense SciPy (`least_squares`) not g2o/gtsam, synthetic textures are richer than a blank wall.
 
 ## Project layout
 
