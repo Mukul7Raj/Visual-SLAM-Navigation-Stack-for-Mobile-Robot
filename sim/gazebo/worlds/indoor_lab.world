@@ -1,0 +1,30 @@
+<?xml version="1.0" ?>
+<sdf version="1.7">
+  <world name="indoor_lab">
+    <include><uri>model://sun</uri></include>
+    <include><uri>model://ground_plane</uri></include>
+    <gravity>0 0 -9.81</gravity>
+    <model name="room">
+      <static>true</static>
+      <link name="link">
+        <collision name="floor"><geometry><box><size>8 6 0.05</size></box></geometry></collision>
+        <visual name="floor">
+          <geometry><box><size>8 6 0.05</size></box></geometry>
+          <material><ambient>0.75 0.75 0.75 1</ambient></material>
+        </visual>
+        <collision name="wall_s"><pose>0 -3 1.4 0 0 0</pose><geometry><box><size>8 0.1 2.8</size></box></geometry></collision>
+        <visual name="wall_s"><pose>0 -3 1.4 0 0 0</pose><geometry><box><size>8 0.1 2.8</size></box></geometry>
+          <material><ambient>0.55 0.6 0.7 1</ambient></material></visual>
+        <collision name="wall_n"><pose>0 3 1.4 0 0 0</pose><geometry><box><size>8 0.1 2.8</size></box></geometry></collision>
+        <visual name="wall_n"><pose>0 3 1.4 0 0 0</pose><geometry><box><size>8 0.1 2.8</size></box></geometry>
+          <material><ambient>0.7 0.55 0.55 1</ambient></material></visual>
+        <collision name="wall_w"><pose>-4 0 1.4 0 0 0</pose><geometry><box><size>0.1 6 2.8</size></box></geometry></collision>
+        <visual name="wall_w"><pose>-4 0 1.4 0 0 0</pose><geometry><box><size>0.1 6 2.8</size></box></geometry>
+          <material><ambient>0.55 0.7 0.55 1</ambient></material></visual>
+        <collision name="wall_e"><pose>4 0 1.4 0 0 0</pose><geometry><box><size>0.1 6 2.8</size></box></geometry></collision>
+        <visual name="wall_e"><pose>4 0 1.4 0 0 0</pose><geometry><box><size>0.1 6 2.8</size></box></geometry>
+          <material><ambient>0.7 0.7 0.5 1</ambient></material></visual>
+      </link>
+    </model>
+  </world>
+</sdf>
